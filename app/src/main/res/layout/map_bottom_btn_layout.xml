@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <com.qiming.wcq.mymapdemo.customview.DrawableCenterRadioButton
+            android:id="@+id/ra_jq"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:checked="true"
+            android:button="@null"
+            android:textColor="@color/btn_jq_text_color"
+            android:drawableLeft="@drawable/btn_jq"
+            android:text="景点" />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="20dp"
+            android:background="@color/qt_text_clor_normal"
+            />
+
+        <com.qiming.wcq.mymapdemo.customview.DrawableCenterRadioButton
+            android:id="@+id/ra_fw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:background="@null"
+            android:textColor="@color/btn_fw_text_color"
+            android:drawableLeft="@drawable/btn_fw"
+            android:text="服务" />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="20dp"
+            android:background="@color/qt_text_clor_normal"
+            />
+
+        <com.qiming.wcq.mymapdemo.customview.DrawableCenterRadioButton
+            android:id="@+id/ra_cs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:drawableLeft="@drawable/btn_cs"
+            android:text="卫生间"
+            android:textColor="@color/btn_cs_text_color"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="20dp"
+            android:background="@color/qt_text_clor_normal"
+            />
+
+
+        <com.qiming.wcq.mymapdemo.customview.DrawableCenterRadioButton
+            android:id="@+id/ra_qt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:textColor="@color/btn_qt_text_color"
+            android:drawableLeft="@drawable/btn_qt"
+            android:text="VR演示"
+            android:layout_weight="1" />
+    </RadioGroup>
+</RelativeLayout>

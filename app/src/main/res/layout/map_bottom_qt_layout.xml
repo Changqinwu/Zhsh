@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/lin_qt"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:background="@drawable/icon_map_bg_busi2"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="停车场"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_park"
+            android:gravity="center"
+            android:textColor="@color/jq_text_clor_normal"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="10dp"
+            android:layout_margin="10dp"
+            android:visibility="gone"
+            android:background="@color/jq_text_clor_normal"
+            />
+
+        <TextView
+            android:text="游客服务中心"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/jq_text_clor_normal"
+            android:id="@+id/tv_fw_center"
+            android:visibility="gone"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
+</RelativeLayout>

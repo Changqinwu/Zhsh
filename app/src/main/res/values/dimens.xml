@@ -1,0 +1,33 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_map_bottom_btn_size">25dp</dimen>
+
+    <dimen name="attraction_stradedy_margin_top">10dp</dimen>
+    <dimen name="home_fragment_top_ad_height">200dp</dimen>
+    <dimen name="home_fragment_middle_nav_height">180dp</dimen>
+    <dimen name="home_fragment_exit_app_ima_width">30dp</dimen>
+    <dimen name="home_fragment_exit_app_ima_height">30dp</dimen>
+
+    <dimen name="home_fragment_rv_item_imageview_width">250dp</dimen>
+    <dimen name="home_fragment_rv_item_imageview_height">80dp</dimen>
+
+    <dimen name="home_fragment_layout_1_height">80dp</dimen>
+    <dimen name="home_fragment_layout_2_gridview_height">165dp</dimen>
+    <dimen name="home_fragment_icon_width">50dp</dimen>
+    <dimen name="home_fragment_icon_height">50dp</dimen>
+
+    <dimen name="top_title_bar_layout_height">46dp</dimen>
+    <dimen name="home_fragment_layout_1_textsize">15sp</dimen>
+    <dimen name="home_fragment_icon_textsize">14sp</dimen>
+
+
+    <dimen name="bottom_tab_width">30dp</dimen>
+    <dimen name="bottom_tab_height">30dp</dimen>
+
+    <dimen name="wanring_text_tip">16sp</dimen>
+
+
+
+</resources>

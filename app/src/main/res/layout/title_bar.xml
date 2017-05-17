@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_base_voice"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.qiming.wcq.mymapdemo.activity.BaseVoiceActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/home_tab_bottom_text_press"
+        android:visibility="gone"
+        android:id="@+id/textView9" />
+
+    <RelativeLayout
+        android:layout_below="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_title_bar_layout_height"
+        android:background="@color/home_tab_bottom_text_press"
+        android:id="@+id/re_title">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:padding="5dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/return_back"
+            android:id="@+id/ima_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:id="@+id/tv_title" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

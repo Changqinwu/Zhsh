@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_html_to_android_route"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.qiming.wcq.mymapdemo.activity.HtmlToAndroidRouteActivity">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/title_bar"
+        android:id="@+id/in_title"
+        />
+
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/in_bottom_btn_gps_layout"
+        android:layout_below="@+id/in_title">
+
+        <com.amap.api.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.amap.api.maps.MapView>
+
+    </RelativeLayout>
+
+
+
+
+    <include
+        android:id="@+id/in_bottom_btn_gps_layout"
+        layout="@layout/btn_gps_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+
+</RelativeLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:background="#fff"
+                android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/lin_coupon"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_fragment_layout_1_height"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+        <com.qiming.wcq.mymapdemo.customview.RippleView
+            android:id="@+id/re_jqmp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1">
+
+            <com.qiming.wcq.mymapdemo.customview.CustomShapeImageView
+                android:id="@+id/ima_coupon_mp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:onlyDrawBorder="false"
+                app:roundRadius="8dp"
+                app:shape="rectangle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="景区门票"
+                android:textColor="@color/white"
+                android:textSize="@dimen/home_fragment_layout_1_textsize"/>
+
+        </com.qiming.wcq.mymapdemo.customview.RippleView>
+
+        <com.qiming.wcq.mymapdemo.customview.RippleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/re_yhq"
+            android:layout_weight="1">
+
+            <com.qiming.wcq.mymapdemo.customview.CustomShapeImageView
+                android:id="@+id/ima_coupon_yhq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:scaleType="fitXY"
+                app:onlyDrawBorder="false"
+                app:roundRadius="8dp"
+                app:shape="rectangle"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="优惠券"
+                android:textColor="@color/white"
+                android:textSize="@dimen/home_fragment_layout_1_textsize"/>
+        </com.qiming.wcq.mymapdemo.customview.RippleView>
+
+        <com.qiming.wcq.mymapdemo.customview.RippleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/re_fsmq"
+            android:layout_weight="1">
+
+            <com.qiming.wcq.mymapdemo.customview.CustomShapeImageView
+                android:id="@+id/ima_coupon_fsmq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:onlyDrawBorder="false"
+                app:roundRadius="8dp"
+                app:shape="rectangle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="风俗民情"
+                android:textColor="@color/white"
+                android:textSize="@dimen/home_fragment_layout_1_textsize"/>
+        </com.qiming.wcq.mymapdemo.customview.RippleView>
+
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,25 @@
+<resources>
+    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="home_fragment_top_ad_height">600dp</dimen>
+    <dimen name="home_fragment_exit_app_ima_width">60dp</dimen>
+    <dimen name="home_fragment_exit_app_ima_height">60dp</dimen>
+
+    <dimen name="home_fragment_rv_item_imageview_width">500dp</dimen>
+    <dimen name="home_fragment_rv_item_imageview_height">180dp</dimen>
+    <dimen name="home_fragment_layout_1_height">240dp</dimen>
+    <dimen name="home_fragment_layout_2_gridview_height">185dp</dimen>
+
+    <dimen name="home_fragment_icon_width">100dp</dimen>
+    <dimen name="home_fragment_icon_height">100dp</dimen>
+    <dimen name="home_fragment_layout_1_textsize">30sp</dimen>
+    <dimen name="home_fragment_icon_textsize">25sp</dimen>
+
+    <dimen name="bottom_tab_width">40dp</dimen>
+    <dimen name="bottom_tab_height">40dp</dimen>
+
+    <dimen name="wanring_text_tip">26sp</dimen>
+
+</resources>

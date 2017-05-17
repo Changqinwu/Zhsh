@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="darkgrey">#C0C0C0</color>
+
+    <color name="red">#FF0000</color>
+    <color name="grey">#ebebeb</color>
+    <color name="jq_text_clor_press">#65BC57</color>
+    <color name="jq_text_clor_normal">#8a8a8a</color>
+
+    <color name="fw_text_clor_press">#6C63B2</color>
+    <color name="fw_text_clor_normal">#8a8a8a</color>
+
+    <color name="cs_text_clor_press">#EF0C22</color>
+    <color name="cs_text_clor_normal">#8a8a8a</color>
+
+    <color name="qt_text_clor_press">#D0448F</color>
+    <color name="qt_text_clor_normal">#8a8a8a</color>
+
+    <color name="home_tab_bottom_text_press">#42BDB9</color>
+    <color name="home_tab_bottom_text_normal">#8D8D8D</color>
+    <color name="line">#E4E4E4</color>
+    <color name="btn_gps_press_color">#8342BDB9</color>
+    <color name="btn_gps_normal_color">#42BDB9</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="rippleview_color">#ffffff</color>
+
+
+</resources>

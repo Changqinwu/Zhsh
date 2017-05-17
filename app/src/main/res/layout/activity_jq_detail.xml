@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_jq_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.qiming.wcq.mymapdemo.activity.JqDetailActivity">
+
+    <include
+
+        android:id="@+id/in_title"
+        layout="@layout/title_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.bigkoo.convenientbanner.ConvenientBanner
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_fragment_top_ad_height"
+        android:layout_below="@+id/in_title"
+        android:id="@+id/banner" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/banner"
+        android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+
+           <include
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               layout="@layout/jd_text_detail_layout"
+
+               />
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
