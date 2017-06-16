@@ -67,7 +67,7 @@
         <service android:name="com.amap.api.location.APSService"/>
 
         <activity
-            android:name=".activity.HomeTabActivity"
+            android:name=".activity.MainTabActivity"
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -77,7 +77,7 @@
         </activity>
         <activity
             android:name=".activity.LocationMarkerActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".activity.NearParkingActivity"/>
         <activity android:name=".activity.GPSGpsActivity"/>
         <activity android:name=".activity.BaseVoiceActivity"/>
@@ -120,6 +120,8 @@
         <activity android:name=".activity.UpdateAppActivity">
         </activity>
         <activity android:name=".activity.MainTainActivity">
+        </activity>
+        <activity android:name=".activity.HomeTabActivity">
         </activity>
     </application>
 

@@ -57,6 +57,7 @@ public class JqDetailActivity extends BaseVoiceActivity implements View.OnClickL
     private int widthPixels;
     private int heightPixels;
     private int lp_ad;
+    public boolean isFinish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +111,8 @@ public class JqDetailActivity extends BaseVoiceActivity implements View.OnClickL
         setParam();
         mTts.startSpeaking(jq_detail, mTtsListener);
         isPlaying = true;
+        isFinish = false;
+        mImaVoice.setImageResource(R.mipmap.icon_autopasu);
 
     }
 
@@ -157,6 +160,10 @@ public class JqDetailActivity extends BaseVoiceActivity implements View.OnClickL
                     mTts.resumeSpeaking();
                     isPlaying = true;
                 }
+                //播放完成，点击重新播放
+                if (isFinish) {
+                    setImaDetail();
+                }
 
                 break;
 
@@ -190,7 +197,7 @@ public class JqDetailActivity extends BaseVoiceActivity implements View.OnClickL
      */
     public SynthesizerListener mTtsListener = new SynthesizerListener() {
 
-        public boolean isFinish;
+
 
         @Override
         public void onSpeakBegin() {

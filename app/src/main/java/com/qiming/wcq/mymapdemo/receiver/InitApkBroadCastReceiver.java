@@ -30,22 +30,22 @@ public class InitApkBroadCastReceiver extends BroadcastReceiver {
 //            Toast.makeText(context, "执行2...", Toast.LENGTH_LONG).show();
 //
 //        }
-        if (intent.getAction().equals(Intent.ACTION_PACKAGE_REPLACED)) {
-            Toast.makeText(context, "更新成功！", Toast.LENGTH_LONG).show();
-            //删除安装包
-              String absolutePath = Environment.getExternalStorageDirectory().getAbsolutePath();
-            String pac_path = absolutePath + "/zhzg.apk";
-            if (pac_path != null) {
-            //Toast.makeText(context, "删除安装包地址："+pac_path, Toast.LENGTH_LONG).show();
-                FileUtils.RecursionDeleteFile(new File(pac_path));
-            }
-
-            Intent intent2 = new Intent(context, HomeTabActivity.class);
-            intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent2);
-
-
-        }
+//        if (intent.getAction().equals(Intent.ACTION_PACKAGE_REPLACED)) {
+//            Toast.makeText(context, "更新成功！", Toast.LENGTH_LONG).show();
+//            //删除安装包
+//              String absolutePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+//            String pac_path = absolutePath + "/zhzg.apk";
+//            if (pac_path != null) {
+//            //Toast.makeText(context, "删除安装包地址："+pac_path, Toast.LENGTH_LONG).show();
+//                FileUtils.RecursionDeleteFile(new File(pac_path));
+//            }
+//
+//            Intent intent2 = new Intent(context, HomeTabActivity.class);
+//            intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            context.startActivity(intent2);
+//
+//
+//        }
 
     }
 

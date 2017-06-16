@@ -6,7 +6,6 @@
                 android:background="@android:color/transparent"
                 tools:context="com.qiming.wcq.mymapdemo.Fragment.StoreFragment">
 
-    <!--
         <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,9 +35,9 @@
                 android:background="#00000000"
                 />
 
-        </FrameLayout>-->
+        </FrameLayout>
 
-    <ProgressBar
+   <!-- <ProgressBar
         android:id="@+id/progressBar2"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
@@ -53,5 +52,5 @@
         android:layout_below="@+id/progressBar2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="正在进入..."/>
+        android:text="正在进入..."/>-->
 </RelativeLayout>

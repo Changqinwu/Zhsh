@@ -1,7 +1,6 @@
 package com.qiming.wcq.mymapdemo.activity;
 
 
-import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,21 +8,17 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,18 +32,15 @@ import com.amap.api.maps.AMapUtils;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
-import com.amap.api.maps.Projection;
 import com.amap.api.maps.model.BitmapDescriptor;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.Circle;
 import com.amap.api.maps.model.CircleOptions;
-
 import com.amap.api.maps.model.GroundOverlayOptions;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
-
 import com.amap.api.maps.model.Polygon;
 import com.amap.api.maps.model.PolygonOptions;
 import com.amap.api.maps.model.Polyline;
@@ -62,13 +54,9 @@ import com.amap.api.services.route.RideRouteResult;
 import com.amap.api.services.route.RouteSearch;
 import com.amap.api.services.route.WalkPath;
 import com.amap.api.services.route.WalkRouteResult;
-import com.bumptech.glide.BitmapTypeRequest;
-import com.bumptech.glide.DrawableTypeRequest;
-import com.bumptech.glide.Glide;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SynthesizerListener;
 import com.qiming.wcq.mymapdemo.R;
-
 import com.qiming.wcq.mymapdemo.constants.Constant;
 import com.qiming.wcq.mymapdemo.constants.FoodLatLng;
 import com.qiming.wcq.mymapdemo.constants.HotelLatLng;
@@ -83,7 +71,9 @@ import com.qiming.wcq.mymapdemo.util.SensorEventHelper;
 import com.qiming.wcq.mymapdemo.util.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -96,7 +86,8 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
     private OnLocationChangedListener mListener;
     private AMapLocationClient mlocationClient;
     private AMapLocationClientOption mLocationOption;
-
+    //是否播放完成
+    private boolean isPlayFinish;
     private TextView mLocationErrText;
     private static final int STROKE_COLOR = Color.argb(180, 3, 145, 255);
     private static final int FILL_COLOR = Color.argb(10, 0, 0, 180);
@@ -119,6 +110,7 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
     private double startlongitude;
     //    private ArrayList<LatLng> dataInfos = new ArrayList<>();
     private ArrayList<MarkerOptions> markerInfos = new ArrayList<>();
+    private Map<Float, LatLng> latlnglist = new HashMap<>();
     //    private ArrayList<String> titles = new ArrayList<>();
     private boolean isLocation;
     private ImageView mPlayState;
@@ -175,6 +167,14 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
     //路线弹窗
     private ProgressDialogUtil dialogUtil;
     private Intent intent;
+    private ArrayList<Float> distanceList = new ArrayList<>();
+    private ImageView mImaClose;
+    private TextView mTvPlayVoiceAddress;
+    private ProgressBar mPb;
+    private RelativeLayout mRlPlayVoice;
+    private Map<LatLng, String> mapPlayVoiceList;
+    private String text;
+    private String jdAddress;
 
 
     @Override
@@ -190,7 +190,6 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
         initView();
 
 
-
     }
 
 
@@ -199,6 +198,9 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
         JingQuLatLng mJqLatlng = new JingQuLatLng();
         dataInfos = mJqLatlng.setJqLatLng();
         titles = mJqLatlng.setTitles();
+        mapPlayVoiceList = mJqLatlng.playVoiceLocation();
+
+
     }
 
     private void initView() {
@@ -219,6 +221,10 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
         mTvStore = (TextView) findViewById(R.id.tv_store);
         mTvPark = (TextView) findViewById(R.id.tv_park);
         mTvFwCenter = (TextView) findViewById(R.id.tv_fw_center);
+        mImaClose = (ImageView) findViewById(R.id.ima_close);
+        mTvPlayVoiceAddress = (TextView) findViewById(R.id.tv_address);
+        mPb = (ProgressBar) findViewById(R.id.pb);
+        mRlPlayVoice = (RelativeLayout) findViewById(R.id.rl_play_voice);
 
 
         mTvHotel.setOnClickListener(this);
@@ -234,6 +240,7 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
         mCancleGps.setOnClickListener(this);
         mBack.setOnClickListener(this);
         mLinGps.setOnClickListener(this);
+        mImaClose.setOnClickListener(this);
 
     }
 
@@ -256,7 +263,7 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
 
             mPlayState = (ImageView) findViewById(R.id.playstate);
             //播放介绍
-            playVoice();
+//            playVoice();
             mPlayState.setOnClickListener(this);
             addMarkersToMap();
             addOverlayToMap();
@@ -265,8 +272,8 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
             mRouteSearch = new RouteSearch(this);
             mRouteSearch.setRouteSearchListener(this);
 
-        }catch (Exception e){
-            ToastUtil.show(this,">>>>"+e.getMessage());
+        } catch (Exception e) {
+            ToastUtil.show(this, ">>>>" + e.getMessage());
         }
 
 
@@ -368,15 +375,16 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
                 startLatitude = amapLocation.getLatitude();
                 startlongitude = amapLocation.getLongitude();
                 LatLng location = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());
+                //自动播报
+                autoPlayVoice();
                 if (!mFirstFix) {
                     mFirstFix = true;
 //					addCircle(location, amapLocation.getAccuracy());//添加定位精度圆
                     addMarker(location);//添加定位图标
                     mSensorHelper.setCurrentMarker(mLocMarker);//定位图标旋转
-
                 } else {
-                    mCircle.setCenter(location);
-                    mCircle.setRadius(amapLocation.getAccuracy());
+//                    mCircle.setCenter(location);
+//                    mCircle.setRadius(amapLocation.getAccuracy());
                     mLocMarker.setPosition(location);
                 }
 
@@ -388,7 +396,7 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
                 if (contains) {
                     ToastUtil.show(this, "当前景区为三坊七巷");
                 } else {
-                    ToastUtil.show(this, "当前不在景区内");
+//                    ToastUtil.show(this, "当前不在景区内");
                 }
 
 
@@ -512,7 +520,7 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
     /**
      * 在地图上添加marker
      */
-    private void addMarkersToMap(){
+    private void addMarkersToMap() {
 
         //初始化坐标
         initData();
@@ -741,7 +749,7 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
                 .transparency(0f)
                 .image(BitmapDescriptorFactory
                         .fromResource(R.mipmap.overly)
-                        )
+                )
                 .visible(true)
                 .zIndex(0.5f)
                 .positionFromBounds(bounds));
@@ -870,14 +878,42 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
 
     //播放景区介绍
 
-    public void playVoice() {
+    public void playVoice(String sni_text) {
 
-        String text = getResources().getString(R.string.voicetext);
+        if ("林则徐纪念馆".equals(sni_text)) {
+            text = getResources().getString(R.string.linzexujinianguantext);
+        } else if ("福州清真寺".equals(sni_text)) {
+            text = getResources().getString(R.string.fujianqingzhenshitext);
+        } else if ("衣锦坊".equals(sni_text)) {
+            text = getResources().getString(R.string.yijinfantext);
+        } else if ("文儒坊".equals(sni_text)) {
+            text = getResources().getString(R.string.wenrufantext);
+        } else if ("光禄坊".equals(sni_text)) {
+            text = getResources().getString(R.string.guangrutext);
+        } else if ("杨桥巷".equals(sni_text)) {
+            text = getResources().getString(R.string.yangqiaoxiangtext);
+        } else if ("郎官巷".equals(sni_text)) {
+            text = getResources().getString(R.string.rangqiaoxiangtext);
+        } else if ("塔巷".equals(sni_text)) {
+            text = getResources().getString(R.string.taxiangtext);
+        } else if ("黄巷".equals(sni_text)) {
+            text = getResources().getString(R.string.huangxiangtext);
+        } else if ("安民巷".equals(sni_text)) {
+            text = getResources().getString(R.string.anminxiangtext);
+        } else if ("宫巷".equals(sni_text)) {
+            text = getResources().getString(R.string.gongxiangtext);
+        } else if ("吉庇巷".equals(sni_text)) {
+            text = getResources().getString(R.string.jipixiangtext);
+        } else {
+            text = getResources().getString(R.string.voicetext);
+        }
+
         //设置参数
         setParam();
         mTts.startSpeaking(text, mTtsListener);
         mPlayState.setImageResource(R.mipmap.play);
         isPlaying = true;
+        isPlayFinish = false;
 
     }
 
@@ -896,6 +932,11 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
                     mTts.resumeSpeaking();
                     isPlaying = true;
                 }
+                //播放完成重新播放
+                if (isPlayFinish) {
+                    playVoice(jdAddress);
+                }
+
                 break;
             //底部景点
             case R.id.ra_jq:
@@ -1003,10 +1044,10 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
                 break;
             //返回
             case R.id.ima_back:
-                try{
+                try {
                     finish();
-                }catch (Exception e){
-                    ToastUtil.show(this,">>>>"+e.getMessage().toString());
+                } catch (Exception e) {
+                    ToastUtil.show(this, ">>>>" + e.getMessage().toString());
                 }
 
                 break;
@@ -1041,6 +1082,10 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
                 addMarkersToMap();
                 break;
 
+            //关闭播放语音的窗口
+            case R.id.ima_close:
+                mRlPlayVoice.setVisibility(View.GONE);
+                break;
         }
     }
 
@@ -1072,6 +1117,7 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
 
         @Override
         public void onSpeakProgress(int percent, int beginPos, int endPos) {
+            mPb.setProgress(percent);
         }
 
         @Override
@@ -1079,6 +1125,7 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
             if (error == null) {
                 Toast.makeText(LocationMarkerActivity.this, "播放完成", Toast.LENGTH_SHORT).show();
                 isFirst = false;
+                isPlayFinish = true;
                 mPlayState.setImageResource(R.mipmap.pause);
             } else if (error != null) {
                 Toast.makeText(LocationMarkerActivity.this, "error.getPlainDescription(true)", Toast.LENGTH_SHORT).show();
@@ -1263,5 +1310,50 @@ public class LocationMarkerActivity extends BaseVoiceActivity implements Locatio
         }
     }
 
+
+    private void autoPlayVoice() {
+        //计算两个坐标点距离
+        //起点坐标
+        LatLng mStartLatlng = new LatLng(startLatitude, startlongitude);
+        //遍历景点
+        for (int i = 0; i < dataInfos.size(); i++) {
+            double latitude = dataInfos.get(i).latitude;
+            double longitude = dataInfos.get(i).longitude;
+
+            LatLng mEndLatlng = new LatLng(latitude, longitude);
+            float distance = AMapUtils.calculateLineDistance(mStartLatlng, mEndLatlng);
+            //小于10m的距离保存
+            if (distance <= 50) {
+                distanceList.add(distance);
+                latlnglist.put(distance, mEndLatlng);
+            }
+        }
+
+        if (distanceList.size() != 0) {
+            float min_distance = distanceList.get(0);
+            //取最小距离
+            for (int i = 0; i < distanceList.size(); i++) {
+                if (distanceList.get(i) < min_distance) {
+                    min_distance = distanceList.get(i);
+                }
+            }
+            //拿到对应的坐标和对应的地址
+            LatLng latLng = latlnglist.get(min_distance);
+            jdAddress = mapPlayVoiceList.get(latLng);
+            mTvPlayVoiceAddress.setText(jdAddress);
+            if (!isPlaying) {
+                ToastUtil.show(this, "开始播放"+jdAddress+"语音介绍");
+                playVoice(jdAddress);
+                //停止定位
+                deactivate();
+            } else {
+                //关闭语音
+                mTts.stopSpeaking();
+                isPlaying = false;
+//                //激活定位
+//                activate(mListener);
+            }
+        }
+    }
 
 }

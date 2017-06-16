@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.andview.refreshview.XRefreshView;
-import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -33,6 +32,7 @@ import com.qiming.wcq.mymapdemo.adapter.GridAdapter;
 import com.qiming.wcq.mymapdemo.adapter.HomeRvAdapter;
 import com.qiming.wcq.mymapdemo.adapter.NetworkImageHolderView;
 import com.qiming.wcq.mymapdemo.constants.Constant;
+import com.qiming.wcq.mymapdemo.customview.GlideImageLoader;
 import com.qiming.wcq.mymapdemo.customview.RippleView;
 import com.qiming.wcq.mymapdemo.entity.AdImageEntity;
 import com.qiming.wcq.mymapdemo.entity.HomeCouponListEntity;
@@ -41,6 +41,7 @@ import com.qiming.wcq.mymapdemo.entity.HomeListEntity;
 import com.qiming.wcq.mymapdemo.util.ExitAppUtil;
 import com.qiming.wcq.mymapdemo.util.ProgressDialogUtil;
 import com.qiming.wcq.mymapdemo.util.ToastUtil;
+import com.youth.banner.Banner;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.https.HttpsUtils;
@@ -69,7 +70,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     private LinearLayoutManager linManager;
     private HomeRvAdapter homeRvAdapter;
     //轮播广告
-    private ConvenientBanner convenientBanner;
+    private Banner convenientBanner;
     private Intent intent;
     //8个图标用gridview布局
     private RecyclerView homegridView;
@@ -184,7 +185,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
 
     private View creatHeadView() {
         View headView = LayoutInflater.from(getActivity()).inflate(R.layout.home_rv_headview_layout, null);
-        convenientBanner = (ConvenientBanner) headView.findViewById(R.id.convenientBanner);
+        convenientBanner = (Banner) headView.findViewById(R.id.convenientBanner);
         homegridView = (RecyclerView) headView.findViewById(R.id.home_gridview);
         RippleView mRlJqmp = (RippleView) headView.findViewById(R.id.re_jqmp);
         RippleView mRlYhq = (RippleView) headView.findViewById(R.id.re_yhq);
@@ -220,43 +221,34 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         return headView;
     }
 
-    private void setBanner(ConvenientBanner convenientBanner) {
-        convenientBanner.setPages(new CBViewHolderCreator<NetworkImageHolderView>() {
-            @Override
-            public NetworkImageHolderView createHolder() {
-                return new NetworkImageHolderView(localImages, getActivity());
-            }
-        }, localImages);
-
-        //设置需要切换的View
-        convenientBanner.setPointViewVisible(true)    //设置指示器是否可见
-                .setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused}); //设置指示器圆点
-        convenientBanner.setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT);
-        convenientBanner.startTurning(5000);//设置自动切换（同时设置了切换时间间隔）
-//        convenientBanner.setOnItemClickListener(new OnItemClickListener() {
-//            @Override
-//            public void onItemClick(int position) {
-//                intent = new Intent(getActivity(), HomeNavDetailActivity.class);
-//                intent.putExtra("param", Constant.SC);
-//                intent.putExtra("type", Constant.SC_TYPE);
-//                startActivity(intent);
-//            }
-//        });
+    private void setBanner(Banner convenientBanner) {
+        //设置可轮播
+        convenientBanner.isAutoPlay(true);
+        //设置图片集合
+        convenientBanner.setImages(localImages);
+        //设置轮播时间
+        convenientBanner.setDelayTime(5000);
+        //设置图片加载器
+        convenientBanner.setImageLoader(new GlideImageLoader());
+        //banner设置方法全部调用完毕时最后调用
+        convenientBanner.start();
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        //开始轮播
         if (convenientBanner != null) {
-            convenientBanner.startTurning(5000);
+            convenientBanner.startAutoPlay();
         }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        convenientBanner.stopTurning();
+        //结束轮播
+        convenientBanner.stopAutoPlay();
     }
 
     @Override

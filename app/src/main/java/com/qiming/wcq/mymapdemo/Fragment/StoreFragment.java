@@ -68,13 +68,13 @@ public class StoreFragment extends Fragment implements View.OnClickListener {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_me, container, false);
 
-//            initView();
-//            initData();
-            Intent intent = new Intent(getActivity(),HomeTabActivity.class);
-            getActivity().startActivity(intent);
-            //设置跳转动画
-            getActivity().overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out);
-            getActivity().finish();
+            initView();
+            initData();
+//            Intent intent = new Intent(getActivity(),HomeTabActivity.class);
+//            getActivity().startActivity(intent);
+//            //设置跳转动画
+//            getActivity().overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out);
+//            getActivity().finish();
         }
         return view;
     }
@@ -103,7 +103,7 @@ public class StoreFragment extends Fragment implements View.OnClickListener {
 
 
     private void initData() {
-        String Url = "http://998.ppjd.com/lzhong/qxfj/cn/details1.html?type=" + "all";
+        String Url = "http://999.zimeiping.com/lzhong/zhxz/cn/details1.html?type=" + "all";
         LoadWebDataUtil mLoad = new LoadWebDataUtil(getActivity(), mWebView, mImaError, Url, mTvCount);
         mLoad.initData();
         // 设置js接口  第一个参数事件接口实例，第二个是实例在js中的别名，这个在js中会用到

@@ -113,5 +113,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
 
+    <include
+        android:layout_above="@+id/in_bottom"
+        android:id="@+id/in_paly_voice_window"
+        layout="@layout/map_paly_voice_window_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        />
+
 
 </RelativeLayout>

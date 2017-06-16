@@ -38,7 +38,7 @@
             android:gravity="center"
             android:background="@null"
             android:textColor="@color/btn_fw_text_color"
-            android:text="全景购物" />
+            android:text="卫生间" />
 
         <View
             android:layout_width="0.1dp"

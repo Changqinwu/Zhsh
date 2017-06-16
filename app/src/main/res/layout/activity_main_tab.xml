@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/home_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/line">
+
+    </RelativeLayout>
+
+    <View
+        android:layout_above="@+id/linearLayout"
+        android:id="@+id/line"
+        android:background="@color/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"/>
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
+
+        <RelativeLayout
+            android:id="@+id/rl_sy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/tab1"
+                android:layout_width="@dimen/bottom_tab_width"
+                android:layout_height="@dimen/bottom_tab_height"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/home_tab_bottom_home"/>
+
+            <TextView
+                android:id="@+id/tv_tab1"
+                android:enabled="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tab1"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/home_tab_bottom_text"
+                android:text="首页"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_rz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/tab2"
+                android:layout_width="@dimen/bottom_tab_width"
+                android:layout_height="@dimen/bottom_tab_height"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/home_tab_bottom_jq"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tab2"
+                android:enabled="false"
+                android:textColor="@color/home_tab_bottom_text"
+                android:layout_centerHorizontal="true"
+                android:text="入驻"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_sd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/tab3"
+                android:layout_width="@dimen/bottom_tab_width"
+                android:layout_height="@dimen/bottom_tab_height"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/home_tab_bottom_store"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tab3"
+                android:enabled="false"
+                android:textColor="@color/home_tab_bottom_text"
+                android:layout_centerHorizontal="true"
+                android:text="商店"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_wd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:background="@drawable/home_tab_bottom_me"
+                android:id="@+id/tab4"
+                android:layout_width="@dimen/bottom_tab_width"
+                android:layout_height="@dimen/bottom_tab_height"
+                android:layout_centerHorizontal="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tab4"
+                android:enabled="false"
+                android:textColor="@color/home_tab_bottom_text"
+                android:layout_centerHorizontal="true"
+                android:text="我的"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

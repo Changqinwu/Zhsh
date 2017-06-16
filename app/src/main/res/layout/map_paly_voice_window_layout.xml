@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_play_voice"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/btn_search_shap"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:id="@+id/ima_close"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/ic_notification_close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+
+        <ProgressBar
+            android:layout_below="@+id/ima_close"
+            android:id="@+id/pb"
+            android:background="@drawable/custom_progressbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/pb"
+            android:id="@+id/tv_address"
+            android:text="地址"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
